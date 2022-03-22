@@ -12,6 +12,7 @@
     "format:fix": "yarn format --write"
   },
   "dependencies": {
+    "axios": "^0.26.1",
     "express": "^4.17.3"
   },
   "devDependencies": {
