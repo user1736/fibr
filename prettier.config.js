@@ -1,4 +1,5 @@
 module.exports = {
+  plugins: ['prettier-plugin-jsdoc'],
   printWidth: 100,
   useTabs: false,
   tabWidth: 2,
@@ -6,6 +7,7 @@ module.exports = {
   semi: false,
   trailingComma: 'es5',
   arrowParens: 'avoid',
+  jsdocSingleLineComment: false,
   overrides: [
     {
       files: '*.{ts,tsx}',
