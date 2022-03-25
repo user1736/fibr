@@ -1,32 +1,30 @@
 import express from 'express'
-import { TgBotApi } from './services/tg-bot-api'
+import { BotApi } from './telegram/bot-api'
+import { CommandHandler } from './telegram/command-handler'
 
 const port = process.env.PORT || 3000
-const appName = process.env.WEBSITE_SITE_NAME
 const botToken = process.env.BOT_TOKEN
 
 const app = express()
 
-const botHookUrl = `https://${appName}.azurewebsites.net/telegram-hook?t=${botToken}`
-const api = new TgBotApi(botToken, botHookUrl)
+const host = `559f-217-30-64-206.ngrok.io`
+const botHookUrl = `https://${host}/telegram-hook?t=${botToken}`
+const api = new BotApi(botToken, botHookUrl)
+const tgHandler = new CommandHandler(api)
 
 app.use(express.json())
-
-app.get('/', (req, res) => {
-  res.send('Lailai!')
-})
 
 app.post('/telegram-hook', async (req, res) => {
   const token = req.query.t
   if (token !== botToken) {
-    console.log('server#telegram-hook-forbidden')
     return res.sendStatus(401)
   }
 
-  console.log(req.body)
+  // TODO: filter out users
+  tgHandler.handle(req.body)
   res.sendStatus(200)
 })
 
 app.listen(port, () => {
-  console.log('lailai')
+  console.log('Server started')
 })
