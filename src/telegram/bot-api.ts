@@ -32,7 +32,7 @@ export class BotApi {
    * @param params
    */
   public async sendMessage(params: SendMessageParams): Promise<Message> {
-    return axios.post(this.apiUrl + 'sendMessage', params).then(res => res.data)
+    return axios.post(this.apiUrl + 'sendMessage', params).then(res => res.data.result)
   }
 
   /**

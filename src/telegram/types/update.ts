@@ -22,7 +22,7 @@ interface AnyUpdate {
 /**
  * New incoming message of any kind — text, photo, sticker, etc.
  */
-interface MessageUpdate extends AnyUpdate {
+export interface MessageUpdate extends AnyUpdate {
   message: Message
 }
 
@@ -33,7 +33,7 @@ export function isMessageUpdate(update: Update): update is MessageUpdate {
 /**
  * New incoming callback query
  */
-interface CallbackQueryUpdate extends AnyUpdate {
+export interface CallbackQueryUpdate extends AnyUpdate {
   callback_query: CallbackQuery
 }
 
